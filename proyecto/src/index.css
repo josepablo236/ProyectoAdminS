@@ -1,0 +1,97 @@
+body {
+  margin: 0;
+  font-family: 'Sora', sans-serif;
+  background-color: #CBF6FF;
+}
+
+header{
+  /*100% de lo que ocupa la pantalla*/
+  height: 90vh;
+  background-image: linear-gradient(to top, rgba(161, 140, 209, 0.404) 0%, #fbc2eb42 100%),url(/src/img/fondo.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.contenedor{
+  text-align: center;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*Separar elementos*/
+  flex-direction: column;
+  color: white;
+}
+
+.titulo{
+  font-size: 60px;
+  margin-bottom: 15px;
+}
+
+.subtitulo{
+  font-size: 20px;
+}
+
+.titulo-seccion{
+  font-size: 45px;
+  color: #93A2F1;
+  margin-bottom: 3rem;
+}
+
+.titulo-contenedor{
+  text-align: center;
+  align-items: center;
+  display: flex;
+  margin-top: 2em;
+  margin-bottom: 0;
+}
+
+.pasos{
+  text-align: center;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*Separar elementos*/
+  flex-direction: column;
+  font-size: 20px;
+}
+
+.paso{
+  margin-bottom: 0;
+}
+
+.imagen-pasos{
+  margin: 0;
+}
+
+.class-Title{
+  font-size: 20px;
+  color: #93A2F1;
+}
+
+footer{
+  background: #93A2F1;
+  /* Evita el colapso de margenes */
+  padding-bottom: 0.1px;
+}
+.footer-content{
+  display: flex; 
+  /* Elementos uno al lado del otro pero en las esquinas */
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; 
+  padding-top: 60px;
+  padding-bottom: 40px;
+  text-align: left;
+}
+
+#contact-us{
+  width: 40%;
+  color: #fff
+}
+
