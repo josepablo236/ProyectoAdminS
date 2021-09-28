@@ -89,6 +89,17 @@ footer{
   padding-bottom: 40px;
   text-align: left;
 }
+.CapturaFoto-content{
+  display: flex; 
+  /* Elementos uno al lado del otro pero en las esquinas */
+  background-color: #33FF77;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; 
+  padding-top: 60px;
+  padding-bottom: 40px;
+  text-align: left;
+}
 
 #contact-us{
   width: 40%;
