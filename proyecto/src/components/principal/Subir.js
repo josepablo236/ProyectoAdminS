@@ -1,8 +1,12 @@
 import React, {useState, Fragment} from 'react';
 import { styled } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import IconButton from '@mui/material/IconButton';
+import Camera from '@material-ui/icons/CameraAlt';
+import Select from '@material-ui/icons/ImageSearch';
+import Send from '@material-ui/icons/Send';
+import Cancel from '@material-ui/icons/Cancel';
 import Stack from '@mui/material/Stack';
+import {Link} from 'react-router-dom';
 
 const Input = styled('input')({
   display: 'none',
@@ -48,20 +52,22 @@ const Subir = () => {
                 <Fragment>
                     <label htmlFor="contained-button-file">
                         <Input accept="image/*" id="contained-button-file" multiple type="file" onChange={archivoSeleccionado}/>
-                        <Button variant="contained" component="span">
+                        <Button variant="contained" component="span" startIcon={<Select/>}>
                         Seleccionar
                         </Button>
                     </label>
-                    <Button variant="contained" component="span" onClick = {tomarFoto} to={'/nueva-cuenta'} >
-                        Tomar foto
-                    </Button>
+                    <Link to="/tomar-foto">
+                        <Button variant="contained" component="span" startIcon={<Camera/>} onClick = {tomarFoto} >
+                            Tomar foto
+                        </Button>
+                    </Link>
                 </Fragment>
                 :
                 <Fragment>
-                    <Button variant="contained" component="span" onClick = {enviarFoto}>
+                    <Button variant="contained" component="span" onClick = {enviarFoto} endIcon={<Send/>}>
                         Enviar foto
                     </Button>
-                    <Button variant="contained" component="span" onClick = {cancelar}>
+                    <Button variant="contained" component="span" onClick = {cancelar} endIcon={<Cancel/>}>
                         Cancelar
                     </Button>
                 </Fragment>

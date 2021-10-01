@@ -26,7 +26,7 @@ const Header = () => {
             <div className="container-sm contenedor">
                 <h1 className="titulo">Mis próximas vacaciones</h1>
                 <p className="subtitulo">Haz click para seleccionar una imagen</p>
-                <Button variant="contained" size="large"  onClick={handleOpen}>Cargar imagen</Button>
+                <Button variant="contained" size="large" startIcon={<UploadIcon/>} onClick={handleOpen}>Cargar imagen</Button>
                 <Modal
                 open={open}
                 onClose={handleClose}
