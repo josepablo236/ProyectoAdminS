@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect, useRef } from 'react';
+import React, { Fragment, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import Camera from '@material-ui/icons/CameraAlt';
 import Replay from '@material-ui/icons/Replay';

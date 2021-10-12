@@ -73,9 +73,11 @@ const SubirDescarga= () =>{
                     />
                 </div>
                 <div className="container mt-3 center">
+                  <Link to="/resultado">
                     <Button variant="contained" component="span" onClick = {enviarFoto} endIcon={<Send/>}>
                             Enviar foto
                     </Button>
+                    </Link>
                     <Button variant="contained" component="span" onClick = {cancelar} endIcon={<Cancel/>}>
                             Cancelar
                     </Button>

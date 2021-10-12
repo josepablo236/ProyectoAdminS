@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Button from '@material-ui/core/Button';
 import UploadIcon from '@material-ui/icons/Image';
 import Modal from '@material-ui/core/Modal';
 import Box from '@material-ui/core/Box';
 import Subir from './Subir';
+import {ImagenContext} from '../../context/ImagenContext';
 
 const style = {
     position: 'absolute',
@@ -18,6 +19,8 @@ const style = {
 };
 
 const Header = () => {
+    //State de la imagen que viene desde el context
+    const { nombre } = useContext(ImagenContext);
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -38,9 +41,17 @@ const Header = () => {
                         <h2>
                         Cargar Imagen
                         </h2>
-                        <p>
-                        Selecciona una imagen o toma una foto
-                        </p>
+                            {
+                                !nombre
+                                ?
+                                <p>
+                                Selecciona una imagen o toma una foto
+                                </p>
+                                :
+                                <p>
+                                    {nombre}
+                                </p>
+                            }
                         <Subir/>
                         </div>
                     </Box>
