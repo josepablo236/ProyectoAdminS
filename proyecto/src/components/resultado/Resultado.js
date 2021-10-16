@@ -2,15 +2,18 @@ import React, {useState, Fragment, useContext} from 'react';
 import gif from '../../img/gifViaje.gif';
 import Map from './Map';
 import {ImagenContext} from '../../context/ImagenContext';
+import Clima from './Clima';
+import Recomendaciones from './Recomendaciones';
+import Retro from './Retro';
+import Form from './Form';
+import Footer from '../principal/Footer';
 
 const Resultado = () => {
 
     //State de la imagen que viene desde el context
-    const { info } = useContext(ImagenContext);
+    const { imagen } = useContext(ImagenContext);
 
     const [loading, guardarLoading] = useState(true);
-
-    const llaveMaps = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyA0NVVStVIJVAnm95X0VbQ_XGinxY9R-do`;
 
     //Tiempo de carga
     setTimeout(()=>{
@@ -21,8 +24,7 @@ const Resultado = () => {
         return(
             <div className="fluid gif">
             <div className="container-sm contenedor">
-                {/* <img src="https://cdn.dribbble.com/users/722246/screenshots/4400319/loading_crescor_dribbble.gif" alt="loading" width="100%"/> */}
-                <img src={gif} alt="loading" width="100%" height="900"/>
+                <img src={gif} alt="loading" width="100%"/>
             </div>
             </div>
         );
@@ -30,8 +32,27 @@ const Resultado = () => {
     else{
         return ( 
             <Fragment>
-                <h1>Resultado: {info.nombre}</h1>
+                <div className="container center">
+                    <h1>Resultado: {imagen.nombre}</h1>
+                </div>
                 <Map/>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-6">
+                            <Clima/>
+                        </div>
+                        <div className="col-md-6">
+                            <Recomendaciones/>
+                        </div>
+                    </div>
+                    <Retro/>
+                    <div className="row center mt-3">
+                        <div className="col-sm-6">
+                            <Form/>
+                        </div>
+                    </div>
+                </div>
+                <Footer/>
             </Fragment>
             );
     }

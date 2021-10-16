@@ -1,11 +1,15 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useContext } from "react";
 import Button from '@material-ui/core/Button';
 import Send from '@material-ui/icons/Send';
 import Back from '@material-ui/icons/ArrowBack';
 import Cancel from '@material-ui/icons/Cancel';
 import {Link} from 'react-router-dom';
+import {ImagenContext} from '../../context/ImagenContext';
 
 const SubirDescarga= () =>{
+
+    //State de la imagen que viene desde el context
+    const { guardarFoto, guardarNombre, guardarCargar } = useContext(ImagenContext);
 
     //State para la imagen subida
     const [imagen, guardarImagen] = useState({});
@@ -15,6 +19,7 @@ const SubirDescarga= () =>{
   const [ImageSelectedPrevious, setImageSelectedPrevious] = useState(null);
   const changeImage = (e) => {
     guardarImagen(e.target.files[0]);
+    guardarNombre(e.target.files[0].name);
     guardarSubida(true);
     if (e.target.files[0] !== undefined) {
       const reader = new FileReader();
@@ -27,7 +32,8 @@ const SubirDescarga= () =>{
   };
 
   const enviarFoto = () =>{
-    console.log(imagen);
+    guardarFoto(imagen);
+    guardarCargar(true);
   }
 
   const cancelar = () =>{

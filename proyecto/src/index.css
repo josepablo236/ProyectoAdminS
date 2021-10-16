@@ -151,3 +151,15 @@ footer{
 .gif{
   height: 90vh;
 }
+
+.clima{
+  background-color: #93A2F1;
+}
+
+.temperatura {
+  font-size: 4rem!important
+}
+.temperatura span {
+  font-size: 2rem!important;
+  vertical-align: super;
+}
