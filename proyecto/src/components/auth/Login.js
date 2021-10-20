@@ -1,13 +1,13 @@
 import React, {useState, useContext, useEffect, Fragment} from 'react';
 import {Link, Redirect} from 'react-router-dom';
 import logo from '../../img/trip.svg';
-import {AuthContext} from '../../context/AuthContext';
+import {ImagenContext} from '../../context/ImagenContext';
 import Error from '../Error.js';
 import axios from 'axios';
 
 const Login = () => {
     //State de la auth que viene desde el context
-    const { guardarUser, guardarLogin } = useContext(AuthContext);
+    const { guardarUser, guardarLogin } = useContext(ImagenContext);
 
 
     //State del login

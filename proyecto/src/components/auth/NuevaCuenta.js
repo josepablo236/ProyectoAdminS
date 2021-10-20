@@ -1,12 +1,9 @@
 import React, {useState, useContext, useEffect, Fragment} from 'react';
 import {Link} from 'react-router-dom';
-import {AuthContext} from '../../context/AuthContext';
 import Error from '../Error.js';
 import axios from 'axios';
 
 const NuevaCuenta = () => {
-    //State de la auth que viene desde el context
-    //const { mensaje, error, guardarMensaje, guardarError, guardarCreado, guardarConsulta } = useContext(AuthContext);
 
     //State de crear cuenta
     const [usuario, guardarUsuario] = useState({
@@ -92,7 +89,6 @@ const NuevaCuenta = () => {
             .then(response =>{
                 if(response.status === 200)
                 {
-                    console.log("Satisfactorio");
                     guardarExito(true);
                 }
                 else{

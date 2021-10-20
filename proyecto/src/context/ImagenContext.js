@@ -1,4 +1,5 @@
 import React, {createContext, useState, useEffect} from 'react';
+import axios from 'axios';
 
 //Crear context
 export const ImagenContext = createContext();
@@ -28,6 +29,32 @@ const ImagenProvider = (props) =>{
     const [errorclima, guardarErrorclima] = useState(false);
     //State retroalimentación
     const [retro, guardarRetro] = useState('');
+
+    //State usuario
+    const [user, guardarUser] = useState({});
+    //Login
+    const [login, guardarLogin] = useState(false);
+
+    //State para enviar datos a la base
+    const [enviar, guardarEnviar] = useState(false);
+
+    //State del resultado
+    //Necesito: imagen, ubicacion, login, clima, retro
+    const [base, guardarBase] = useState({
+        email: '',
+        nombre: '',
+        lugar: '',
+        lat: '',
+        lng: '',
+        direccion: '',
+        clima: '',
+        temp: '',
+        temp_max: '',
+        temp_min: '',
+        reco: '',
+        prendas: [],
+        retro: ''
+    });
 
     //Consulta a la API azure
     useEffect(() => {
@@ -106,11 +133,19 @@ const ImagenProvider = (props) =>{
                 clima,
                 errorclima,
                 retro,
+                user,
+                login,
+                base,
+                enviar,
                 guardarFoto,
                 guardarNombre,
                 guardarCargar,
                 guardarUbicacion,
-                guardarRetro
+                guardarRetro,
+                guardarUser,
+                guardarLogin,
+                guardarBase,
+                guardarEnviar
             }}
         >
             {props.children}

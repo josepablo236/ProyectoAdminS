@@ -1,11 +1,11 @@
 import React, {Fragment, useContext} from 'react';
 import Sesion from './Sesion';
-import {AuthContext} from '../../context/AuthContext';
+import {ImagenContext} from '../../context/ImagenContext';
 import NoSesion from './NoSesion';
 
 const Header = () => {
     //State de la auth que viene desde el context
-    const { login } = useContext(AuthContext);
+    const { login } = useContext(ImagenContext);
     return ( 
         <header className="fluid">
             <div className="container-sm contenedor">

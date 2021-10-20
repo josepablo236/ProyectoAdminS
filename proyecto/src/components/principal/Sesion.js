@@ -5,7 +5,6 @@ import Modal from '@material-ui/core/Modal';
 import Box from '@material-ui/core/Box';
 import Subir from './Subir';
 import {ImagenContext} from '../../context/ImagenContext';
-import {AuthContext} from '../../context/AuthContext';
 
 const style = {
     position: 'absolute',
@@ -21,9 +20,7 @@ const style = {
 
 const Sesion = () => {
     //State de la imagen que viene desde el context
-    const { nombre } = useContext(ImagenContext);
-    //State de la auth que viene desde el context
-    const { user } = useContext(AuthContext);
+    const { nombre, user } = useContext(ImagenContext);
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);

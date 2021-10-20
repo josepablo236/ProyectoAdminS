@@ -1,35 +1,14 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {ImagenContext} from '../../context/ImagenContext';
+import { evaluarTemperatura } from '../../helpers';
 
 const Recomendaciones = () => {
     const { clima, errorclima } = useContext(ImagenContext);
     const {nombre, temp} = clima;
 
-    let estado;
-    let parrafo;
-    let prendas;
+    let objeto = evaluarTemperatura(temp);
 
-    //Evaluar temp para recomendar
-    if(temp >= 24.00){
-        estado ='calido';
-        parrafo= '¡Puede que haya calor! ¡Lleva ropa fresca!';
-        prendas=["Pantalonetas", "Faldas", "Vestidos", "Shorts", "Prendas sin mangas", "Sandalias"];
-    }
-    else if(temp <= 10.00){
-        estado ='frio';
-        parrafo= '¡Puede que haya un poco de frio! ¡Procura abrigarte!';
-        prendas=["Chaquetas", "Gorros", "Bufandas", "Suéteres", "Jeans/Pants"];
-    }
-    else if(temp < 0){
-        estado ='bajo cero';
-        parrafo= '¡Claramente estará muy frío! ¡Prepárate para abrigarte muy bien!';
-        prendas=["Chumpas", "Gorros", "Guantes", "Conjuntos térmicos", "Bufandas", "Medias térmicas", "Gambones"];
-    }
-    else{
-        estado ='templado';
-        parrafo= '¡Ni frio ni calor! ¡Lleva tu ropa favorita!';
-        prendas=["Jeans/Pants", "Camisas", "Playeras deportivas", "Shorts", "Vestidos", "Chaquetas"];
-    }
+    const {estado, parrafo, prendas} = objeto;
 
     return ( 
         <div className="card bg-light mt-5">
