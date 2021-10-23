@@ -1,0 +1,44 @@
+import React, {useContext, Fragment} from 'react';
+import logo from '../../img/trip.svg';
+import {Link} from 'react-router-dom';
+import {ImagenContext} from '../../context/ImagenContext';
+
+const NavBarP = () => {
+    //State de la imagen que viene desde el context
+    const { login, guardarLogin, guardarRegresar, guardarFoto, guardarUbicacion, guardarRetro, guardarBase, guardarNombre } = useContext(ImagenContext);
+
+    const cerrarSesion = ()=>{
+        guardarLogin(false);
+        guardarFoto({});
+        guardarUbicacion({});
+        guardarRetro({});
+        guardarBase({});
+        guardarRegresar(false);
+        guardarNombre('');
+    }
+    return ( 
+        <Fragment>
+            {
+                login 
+                ?
+                <nav className="navbar navbar-dark bg-dark">
+                    <div className="container-fluid">
+                        <a className="navbar-brand">
+                        <img src={logo} alt="" width="30" height="24" className="d-inline-block align-text-top"/>
+                        Mis próximas vacaciones
+                        </a>
+                        <form className="d-flex" onSubmit={cerrarSesion}>
+                            <Link to="/">
+                            <button className="btn btn-secundario" type="submit" onClick={cerrarSesion}>Cerrar sesión</button>
+                            </Link>
+                        </form>
+                    </div>
+                </nav>
+                :
+                null
+            }
+        </Fragment>
+     );
+}
+ 
+export default NavBarP;

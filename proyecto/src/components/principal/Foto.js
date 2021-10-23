@@ -16,7 +16,6 @@ const Foto = () => {
     
     const encenderCamara = () => {
         guardarEncendida(true);
-        console.log("funcion ejecutada");
         var video = document.querySelector('#v'), canvas = document.querySelector('#c'), 
         btn = document.querySelector('#t'), img = document.querySelector('#img');
         
@@ -44,10 +43,6 @@ const Foto = () => {
         var video = document.getElementById('v');
         canvas.getContext('2d').drawImage(video,0,0);
         var imgData = canvas.toDataURL('image/png');
-        // a.href = imgData;
-        // a.download = 'image.png'
-        // a.click();
-        //document.body.removeChild(a);
         img.setAttribute('src',imgData);
         guardarFoto(true);
     }
@@ -73,8 +68,20 @@ const Foto = () => {
         video.src = "";
         video.srcObject.getTracks()[0].stop();
     }
+
+    const apagarCamara = ()=>{
+        var video = document.getElementById('v');
+        video.pause();
+        video.src = "";
+        if(video.srcObject !== null)
+        {
+            video.srcObject.getTracks()[0].stop();
+        }
+    }
+
     return ( 
         <div className="container">
+            <h1 className="text-center">Toma una foto con tu cámara web</h1>
             <div className="row">
                 <div className="col-md-6">
                     <video id='v' autoPlay></video>
@@ -106,7 +113,7 @@ const Foto = () => {
                 :
                     <div className="center mt-3">
                         <Link to="/">
-                        <Button variant="contained" size="large" startIcon={<Back/>}>Regresar</Button>
+                        <Button variant="contained" size="large" startIcon={<Back/>} onClick={apagarCamara}>Regresar</Button>
                         </Link>
                     <Button variant="contained" size="large" startIcon={<Camera/>} onClick={tomarFoto}>Tomar foto</Button>
                     </div>

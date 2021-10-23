@@ -7,11 +7,13 @@ import Recomendaciones from './Recomendaciones';
 import Retro from './Retro';
 import Form from './Form';
 import Footer from '../principal/Footer';
+import NavBar from './NavBar';
+import ErrorResult from './ErrorResult';
 
 const Resultado = () => {
 
     //State de la imagen que viene desde el context
-    const { imagen } = useContext(ImagenContext);
+    const { errorfoto, errormapa } = useContext(ImagenContext);
 
     const [loading, guardarLoading] = useState(true);
 
@@ -32,27 +34,35 @@ const Resultado = () => {
     else{
         return ( 
             <Fragment>
-                <div className="container center">
-                    <h1>Resultado: {imagen.nombre}</h1>
-                </div>
-                <Map/>
                 <div className="container">
-                    <div className="row">
-                        <div className="col-md-6">
-                            <Clima/>
-                        </div>
-                        <div className="col-md-6">
-                            <Recomendaciones/>
-                        </div>
-                    </div>
-                    <Retro/>
-                    <div className="row center mt-3">
-                        <div className="col-sm-6">
-                            <Form/>
-                        </div>
-                    </div>
+                    <NavBar/>
                 </div>
-                <Footer/>
+                {
+                    (!errorfoto && !errormapa)
+                    ?
+                    <Fragment>
+                        <Map/>
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <Clima/>
+                                </div>
+                                <div className="col-md-6">
+                                    <Recomendaciones/>
+                                </div>
+                            </div>
+                            <Retro/>
+                            <div className="row center mt-3">
+                                <div className="col-sm-6">
+                                    <Form/>
+                                </div>
+                            </div>
+                        </div>
+                        <Footer/>
+                    </Fragment>
+                    :
+                    <ErrorResult/>
+                }
             </Fragment>
             );
     }

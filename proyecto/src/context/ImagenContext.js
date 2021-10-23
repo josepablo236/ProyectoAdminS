@@ -25,19 +25,12 @@ const ImagenProvider = (props) =>{
     });
     //State del clima
     const [clima, guardarClima] = useState({});
-    //State error clima
-    const [errorclima, guardarErrorclima] = useState(false);
     //State retroalimentación
     const [retro, guardarRetro] = useState('');
-
     //State usuario
     const [user, guardarUser] = useState({});
     //Login
     const [login, guardarLogin] = useState(false);
-
-    //State para enviar datos a la base
-    const [enviar, guardarEnviar] = useState(false);
-
     //State del resultado
     //Necesito: imagen, ubicacion, login, clima, retro
     const [base, guardarBase] = useState({
@@ -55,6 +48,22 @@ const ImagenProvider = (props) =>{
         prendas: [],
         retro: ''
     });
+    //Para volver a pagina principal
+    const [regresar, guardarRegresar] = useState(false);
+    //States de errores
+    //State error clima
+    const [errorclima, guardarErrorclima] = useState(false);
+    //State error imagen
+    const [errorfoto, guardarErrorfoto] = useState(false);
+    //State error maps
+    const [errormapa, guardarErrormapa] = useState(false);
+
+    //Para regresar
+    useEffect(()=>{
+        if(regresar){
+            guardarLogin(true);
+        }
+    },[regresar]);
 
     //Consulta a la API azure
     useEffect(() => {
@@ -79,18 +88,24 @@ const ImagenProvider = (props) =>{
     //Respuesta de la API azure
     function handleResponse() {
         if(this.status !== 200){
-            alert("Error calling Bing Visual Search. See console log for details.");
+            //guardarErrorfoto(true);
             return;
         }
         else{
             var tags = JSON.parse(this.responseText);
-            console.log(tags);
-            var url = String(tags.tags[1].image.thumbnailUrl);
-            var name = tags.tags[1].displayName;
-            guardarImagen({
-                nombre: name,
-                urlImagen: url
-            });
+            console.log(tags.tags);
+            if(tags.tags.length > 1){
+                guardarErrorfoto(false);
+                var url = String(tags.tags[1].image.thumbnailUrl);
+                var name = tags.tags[1].displayName;
+                guardarImagen({
+                    nombre: name,
+                    urlImagen: url
+                });
+            }
+            else{
+                guardarErrorfoto(true);
+            }
         }
     }
 
@@ -132,11 +147,12 @@ const ImagenProvider = (props) =>{
                 ubicacion,
                 clima,
                 errorclima,
+                errorfoto,
+                errormapa,
                 retro,
                 user,
                 login,
                 base,
-                enviar,
                 guardarFoto,
                 guardarNombre,
                 guardarCargar,
@@ -145,7 +161,8 @@ const ImagenProvider = (props) =>{
                 guardarUser,
                 guardarLogin,
                 guardarBase,
-                guardarEnviar
+                guardarErrormapa,
+                guardarRegresar
             }}
         >
             {props.children}

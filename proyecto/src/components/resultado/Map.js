@@ -5,7 +5,7 @@ import {ImagenContext} from '../../context/ImagenContext';
 const Map = () => {
 
     //State de la imagen que viene desde el context
-    const { imagen, guardarUbicacion } = useContext(ImagenContext);
+    const { imagen, guardarUbicacion, guardarErrormapa } = useContext(ImagenContext);
 
     let contentString;
 
@@ -30,9 +30,13 @@ const Map = () => {
               `<img src=${imagen.urlImagen} width="200px" height: 50px/>`+
               "</div>" +
               "</div>";
-              console.log(results);
+              guardarErrormapa(false);
               createMarker(results[0], map);
               map.setCenter(results[0].geometry.location);
+            }
+            else{
+              //error
+              guardarErrormapa(true);
             }
           });
     }
@@ -74,7 +78,7 @@ const Map = () => {
     return ( 
       <div className="container">
         <div style={{ height: '400px', width: '100%' }}>
-        <GoogleMapReact
+          <GoogleMapReact
           bootstrapURLKeys={{ 
             // key2: "AIzaSyA0NVVStVIJVAnm95X0VbQ_XGinxY9R-do", 
             key: "AIzaSyC84b6fImY9rHugYUEuZ7p61Iwr9E6RToA",

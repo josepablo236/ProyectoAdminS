@@ -3,7 +3,7 @@ import {ImagenContext} from '../../context/ImagenContext';
 import { evaluarTemperatura } from '../../helpers';
 import axios from 'axios';
 const Form = () => {
-    const { ubicacion, user, clima, retro, enviar, base, guardarBase, guardarEnviar } = useContext(ImagenContext);
+    const { ubicacion, user, clima, errorclima, retro, base, guardarBase} = useContext(ImagenContext);
 
     //State para enviar
     const [enviado, guardarEnviado] = useState(false);
@@ -17,8 +17,8 @@ const Form = () => {
             email: user.correo,
             nombre: user.nombre,
             lugar: clima.nombre,
-            lat: ubicacion.latitud,
-            lng: ubicacion.longitud,
+            lat: ubicacion.latitud.toString(),
+            lng: ubicacion.longitud.toString(),
             direccion: ubicacion.direccion,
             clima: objeto.estado,
             temp: clima.temp,
@@ -26,9 +26,8 @@ const Form = () => {
             temp_min: clima.temp_min,
             retro: retro
         });
-        guardarEnviar(true);
         var resultado = `Hola ${user.nombre}, el resultado de tu busqueda fue: 
-        Lugar: ${clima.nombre}, Ubicación: lat: ${ubicacion.latitud} lng: ${ubicacion.longitud} 
+        Lugar: ${clima.nombre}, Ubicación: lat: ${ubicacion.latitud.toString()} lng: ${ubicacion.longitud.toString()} 
         Clima: ${objeto.estado} Temperatura: ${clima.temp} Temperatura Max: ${clima.temp_max} Temperatura min: ${clima.temp_min} 
         ${objeto.parrafo} Prendas para usar: ${objeto.prendas}`;
         console.log(resultado);
@@ -43,40 +42,49 @@ const Form = () => {
                 if(response.status === 200)
                 {
                     console.log("Se guardó el resultado", base);
+                    console.log(response);
                 }
                 else{
                     console.log("No se pudo guardar el resultado");
                 }
             })
         }
-        if(enviar){
+        if(enviado){
             enviarDatos();
         }
-    }, [enviar]);
+    }, [enviado]);
     return ( 
-        <div className="container card mt-3 mb-5">
+        <Fragment>
             {
-                (!enviado)
+                (!errorclima)
                 ?
-                <Fragment>
-                    <h2 className="text-center mt-3 mb-3 fs-4">Agrega tu correo para enviarte los resultados</h2>
-                    <form
-                        onSubmit={enviarCorreo}
-                        className="mb-3"
-                    >
-                        <div className="row mb-3">
-                            <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Email</label>
-                            <div className="col-sm-10">
-                            <input type="email" className="form-control" id="inputEmail3"/>
-                            </div>
-                        </div>
-                        <button type="submit" className="btn btn-primary">Enviar</button>
-                    </form>
-                </Fragment>
+                    <div className="container card mt-3 mb-5">
+                        {
+                            (!enviado)
+                            ?
+                            <Fragment>
+                                <h2 className="text-center mt-3 mb-3 fs-4">Agrega tu correo para enviarte los resultados</h2>
+                                <form
+                                    onSubmit={enviarCorreo}
+                                    className="mb-3"
+                                >
+                                    <div className="row mb-3">
+                                        <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Email</label>
+                                        <div className="col-sm-10">
+                                        <input type="email" className="form-control" id="inputEmail3"/>
+                                        </div>
+                                    </div>
+                                    <button type="submit" className="btn btn-primary">Enviar</button>
+                                </form>
+                            </Fragment>
+                            :
+                            <h2 className="text-center mt-3 mb-3 fs-4">¡Te hemos enviado la información!</h2>
+                        }
+                    </div>
                 :
-                <h2 className="text-center mt-3 mb-3 fs-4">¡Te hemos enviado la información!</h2>
+                    null
             }
-        </div>
+        </Fragment>
      );
 }
  

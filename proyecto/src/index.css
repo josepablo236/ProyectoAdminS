@@ -24,6 +24,7 @@ header{
   /*Separar elementos*/
   flex-direction: column;
   color: white;
+  margin-top: 0;
 }
 
 .titulo{
@@ -221,7 +222,6 @@ opacity: .7;
 }
 
 .btn {
-  margin-top: 1rem;
   font-family: var(--headingFont);
   padding: 1 rem;
   font-size: 1 rem;
@@ -246,4 +246,33 @@ opacity: .7;
 .btn-block {
   display: block;
   width: 100%;
+}
+
+.btn-secundario {
+  font-family: var(--headingFont);
+  /* padding: 1.5rem; */
+  font-size: 1rem;
+  font-weight: 400;
+  border-radius: .5rem;
+  border: none;
+  transition: background-color .3s ease;
+  background-color: lightblue;
+  /* margin-left: 80%; */
+  float:left;
+}
+
+.btn-secundario:hover {
+  background: white;
+}
+
+.encabezado{
+  margin-bottom: 0;
+}
+
+.app-header {
+  /* justify-content: space-between; */
+  /* background-color: var(--gris2); */
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-right: 0;
 }
