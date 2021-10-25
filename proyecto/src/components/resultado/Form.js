@@ -4,7 +4,8 @@ import { evaluarTemperatura } from '../../helpers';
 import axios from 'axios';
 import emailjs from 'emailjs-com';
 import Error from '../Error.js';
-//import { FacebookButton, FacebookCount } from "react-social";
+import { shareTextToWhatsApp } from 'share-text-to-whatsapp';
+import {FacebookShareButton, FacebookIcon, TwitterShareButton,  TwitterIcon, WhatsappShareButton,  WhatsappIcon } from "react-share";
 
 const Form = () => {
     const { ubicacion, user, clima, retro, base, guardarBase } = useContext(ImagenContext);
@@ -19,7 +20,8 @@ const Form = () => {
     const [formulario, guardarFormulario] = useState({
         email: ''
     });
-
+    //En lo que se consigue el link de la pagina
+    const url = "https://github.com/josepablo236/ProyectoAdminS/tree/Principal";
     const {email} = formulario;
 
     let objeto = evaluarTemperatura(clima.temp);
@@ -148,6 +150,38 @@ ${objeto.parrafo} Prendas para usar: ${objeto.prendas}`}>
                     </form>
                 </Fragment>
             }
+            <div>
+                <FacebookShareButton url = {url} 
+                quote = {
+                    `Hola ${user.nombre}, el resultado de tu busqueda fue: 
+                    Lugar: ${clima.nombre}, Ubicación: lat: ${ubicacion.latitud} lng: ${ubicacion.longitud} 
+                    Clima: ${objeto.estado} Temperatura: ${clima.temp} Temperatura Max: ${clima.temp_max} Temperatura min: ${clima.temp_min} 
+                    ${objeto.parrafo} Prendas para usar: ${objeto.prendas}`
+                }
+                >
+                    <FacebookIcon logoFillColor = "white" round= {true}></FacebookIcon>
+                </FacebookShareButton>
+                <TwitterShareButton url = {url} 
+                via = {
+                    `Hola ${user.nombre}, el resultado de tu busqueda fue: 
+                    Lugar: ${clima.nombre}, Ubicación: lat: ${ubicacion.latitud} lng: ${ubicacion.longitud} 
+                    Clima: ${objeto.estado} Temperatura: ${clima.temp} Temperatura Max: ${clima.temp_max} Temperatura min: ${clima.temp_min} 
+                    ${objeto.parrafo} Prendas para usar: ${objeto.prendas}`
+                }
+                >
+                    <TwitterIcon logoFillColor = "white" round= {true}></TwitterIcon>
+                </TwitterShareButton>
+                <WhatsappShareButton 
+                url = {
+                    `Hola ${user.nombre}, el resultado de tu busqueda fue: 
+                    Lugar: ${clima.nombre}, Ubicación: lat: ${ubicacion.latitud} lng: ${ubicacion.longitud} 
+                    Clima: ${objeto.estado} Temperatura: ${clima.temp} Temperatura Max: ${clima.temp_max} Temperatura min: ${clima.temp_min} 
+                    ${objeto.parrafo} Prendas para usar: ${objeto.prendas}`
+                } 
+                >
+                    <WhatsappIcon logoFillColor = "white" round= {true}></WhatsappIcon>
+                </WhatsappShareButton>
+            </div>
         </div>
      );
 }
