@@ -84,16 +84,7 @@ const Form = () => {
     useEffect(() => {
         const enviarDatos = async () =>{
             const url ='https://wp8zwjanmi.execute-api.us-east-2.amazonaws.com/dev/resultado';
-            axios.post(url, base)
-            .then(response =>{
-                if(response.status === 200)
-                {
-                    console.log("Se guardó el resultado", base);
-                }
-                else{
-                    console.log("No se pudo guardar el resultado");
-                }
-            })
+            axios.post(url, base);
         }
         if(enviado){
             enviarDatos();
@@ -106,26 +97,26 @@ const Form = () => {
                 (!enviado)
                 ?
                 <Fragment>
-                    <h2 className="text-center mt-3 mb-3 fs-4">Agrega tu correo para enviarte los resultados</h2>
+                    <h2 className="text-center mt-3 mb-3 mt-4 fs-4">Agrega tu correo para enviarte los resultados</h2>
                     {error ? <Error mensaje={mensaje}/> : null}
                     <form ref={form}
                         onSubmit={enviarCorreo}
                         className="mb-3"
                     >
                         <div className="mb-3 row">
-                            <label htmlFor="staticEmail" className="col-sm-2 col-form-label">Nombre</label>
+                            <label htmlFor="staticEmail" className="col-md-2 col-form-label">Nombre</label>
                             <div className="col-sm-6 col-md-10">
                             <input type="text" readOnly className="form-control-plaintext" id="staticEmail" name = "to_name" value={user.nombre}/>
                             </div>
                         </div>
                         <div className="mb-3 row">
-                            <label htmlFor="inputEmail" className="col-sm-2 col-form-label">Email</label>
+                            <label htmlFor="inputEmail" className="col-md-2 col-form-label">Email</label>
                             <div className="col-sm-6 col-md-10">
                             <input type="text" className="form-control" name = "email" onChange={onChange} value={email}/>
                             </div>
                         </div>
                         <div className="mb-3 row">
-                            <label htmlFor="staticEmail" className="col-sm-2 col-form-label">Mensaje</label>
+                            <label htmlFor="staticEmail" className="col-md-2 col-form-label">Mensaje</label>
                             <div className="col-sm-6 col-md-10">
                             <textarea type="text" rows="10" cols="50" readOnly className="form-control-plaintext" id="staticEmail" name = "message" 
                             value={`Hola ${user.nombre}, el resultado de tu busqueda fue: 
@@ -135,7 +126,9 @@ ${objeto.parrafo} Prendas para usar: ${objeto.prendas}`}>
                             </textarea>
                             </div>
                         </div>
-                        <button type="submit" className="btn btn-primary">Enviar</button>
+                        <div className="d-grid gap-2 col-6 mx-auto mb-3">
+                            <button type="submit" className="btn btn-primary">Enviar correo</button>
+                        </div>
                     </form>
                 </Fragment>
                 :
@@ -150,7 +143,10 @@ ${objeto.parrafo} Prendas para usar: ${objeto.prendas}`}>
                     </form>
                 </Fragment>
             }
-            <div>
+            <div className="center mb-3">
+                <p>¡Comparte en tus redes sociales!</p>
+            </div>
+            <div className="center mb-4">
                 <FacebookShareButton url = {url} 
                 quote = {
                     `Hola ${user.nombre}, el resultado de tu busqueda fue: 
@@ -159,7 +155,7 @@ ${objeto.parrafo} Prendas para usar: ${objeto.prendas}`}>
                     ${objeto.parrafo} Prendas para usar: ${objeto.prendas}`
                 }
                 >
-                    <FacebookIcon logoFillColor = "white" round= {true}></FacebookIcon>
+                    <FacebookIcon round= {true}></FacebookIcon>
                 </FacebookShareButton>
                 <TwitterShareButton url = {url} 
                 via = {
@@ -169,7 +165,7 @@ ${objeto.parrafo} Prendas para usar: ${objeto.prendas}`}>
                     ${objeto.parrafo} Prendas para usar: ${objeto.prendas}`
                 }
                 >
-                    <TwitterIcon logoFillColor = "white" round= {true}></TwitterIcon>
+                    <TwitterIcon round= {true}></TwitterIcon>
                 </TwitterShareButton>
                 <WhatsappShareButton 
                 url = {
@@ -179,7 +175,7 @@ ${objeto.parrafo} Prendas para usar: ${objeto.prendas}`}>
                     ${objeto.parrafo} Prendas para usar: ${objeto.prendas}`
                 } 
                 >
-                    <WhatsappIcon logoFillColor = "white" round= {true}></WhatsappIcon>
+                    <WhatsappIcon round= {true}></WhatsappIcon>
                 </WhatsappShareButton>
             </div>
         </div>
