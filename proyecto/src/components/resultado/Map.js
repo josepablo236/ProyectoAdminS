@@ -1,4 +1,4 @@
-import React, {useState, useContext, Fragment} from 'react';
+import React, {useContext} from 'react';
 import GoogleMapReact from 'google-map-react';
 import {ImagenContext} from '../../context/ImagenContext';
 
@@ -42,7 +42,6 @@ const Map = () => {
     }
 
     const createMarker = (place, map) => {
-      console.log(place);
       let infowindow = new window.google.maps.InfoWindow({
         content: contentString,
       });

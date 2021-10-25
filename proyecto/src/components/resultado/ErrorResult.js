@@ -6,15 +6,18 @@ import {ImagenContext} from '../../context/ImagenContext';
 
 const ErrorResult = () => {
     //State de la imagen que viene desde el context
-    const { guardarRegresar, guardarFoto, guardarUbicacion, guardarRetro, guardarBase, guardarNombre } = useContext(ImagenContext);
+    const { guardarRegresar, guardarFoto, guardarImagen, guardarUbicacion, guardarRetro, guardarBase, guardarNombre, guardarErrormapa, guardarErrorfoto } = useContext(ImagenContext);
 
     const regresar = ()=>{
         guardarRegresar(true);
         guardarFoto({});
+        guardarImagen({});
         guardarUbicacion({});
         guardarRetro({});
         guardarBase({});
         guardarNombre('');
+        guardarErrorfoto(false);
+        guardarErrormapa(false);
     }
 
     return ( 

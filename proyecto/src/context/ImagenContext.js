@@ -1,5 +1,4 @@
 import React, {createContext, useState, useEffect} from 'react';
-import axios from 'axios';
 
 //Crear context
 export const ImagenContext = createContext();
@@ -48,6 +47,7 @@ const ImagenProvider = (props) =>{
         prendas: [],
         retro: ''
     });
+
     //Para volver a pagina principal
     const [regresar, guardarRegresar] = useState(false);
     //States de errores
@@ -93,7 +93,6 @@ const ImagenProvider = (props) =>{
         }
         else{
             var tags = JSON.parse(this.responseText);
-            console.log(tags.tags);
             if(tags.tags.length > 1){
                 guardarErrorfoto(false);
                 var url = String(tags.tags[1].image.thumbnailUrl);
@@ -161,7 +160,9 @@ const ImagenProvider = (props) =>{
                 guardarUser,
                 guardarLogin,
                 guardarBase,
+                guardarErrorfoto,
                 guardarErrormapa,
+                guardarImagen,
                 guardarRegresar
             }}
         >

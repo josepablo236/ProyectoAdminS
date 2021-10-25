@@ -7,6 +7,7 @@ import Resultado from './components/resultado/Resultado';
 import ImagenProvider from './context/ImagenContext';
 import Login from './components/auth/Login.js';
 import NuevaCuenta from './components/auth/NuevaCuenta';
+import RutaPrivada from './components/rutas/RutaPrivada';
 
 function App() {
   return (
@@ -16,9 +17,9 @@ function App() {
           <Route exact path="/" component={Principal}/>
           <Route exact path="/login" component={Login}/>
           <Route exact path="/nueva-cuenta" component={NuevaCuenta}/>
-          <Route exact path="/tomar-foto" component={Foto}/>
-          <Route exact path="/subir-descarga" component={SubirDescarga}/>
-          <Route exact path="/resultado" component={Resultado}/>
+          <RutaPrivada exact path="/tomar-foto" component={Foto}/>
+          <RutaPrivada exact path="/subir-descarga" component={SubirDescarga}/>
+          <RutaPrivada exact path="/resultado" component={Resultado}/>
         </Switch>
       </Router>
     </ImagenProvider>

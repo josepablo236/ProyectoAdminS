@@ -8,8 +8,6 @@ const Clima = () => {
 
     const {nombre, temp, temp_max, temp_min} = clima;
 
-    //Grados kelvin
-    const kelvin = 273.15;
     return ( 
         <div className="card text-white bg-info text-center mt-5">
             <div className="card-body">

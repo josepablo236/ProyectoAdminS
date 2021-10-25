@@ -16,8 +16,7 @@ const Foto = () => {
     
     const encenderCamara = () => {
         guardarEncendida(true);
-        var video = document.querySelector('#v'), canvas = document.querySelector('#c'), 
-        btn = document.querySelector('#t'), img = document.querySelector('#img');
+        var video = document.querySelector('#v'), canvas = document.querySelector('#c');
         
         navigator.getUserMedia = (navigator.getUserMedia ||
                         navigator.webkitGetUserMedia ||
@@ -36,8 +35,6 @@ const Foto = () => {
     }
     
     const tomarFoto = () =>{
-        // const a = document.createElement("a");
-        // document.body.appendChild(a);
         var img = document.getElementById('img');
         var canvas = document.getElementById('c');
         var video = document.getElementById('v');
@@ -56,7 +53,6 @@ const Foto = () => {
     const descargarFoto = () =>{
         const a = document.createElement("a");
         document.body.appendChild(a);
-        var img = document.getElementById('img');
         var video = document.getElementById('v');
         var canvas = document.getElementById('c');
         var imgData = canvas.toDataURL('image/png');
@@ -88,7 +84,7 @@ const Foto = () => {
                     <canvas id='c'></canvas>
                 </div>
                 <div className="col-md-6">
-                    <img src="" id='img'/>
+                    <img src="" alt="" id='img'/>
                 </div>
             </div>
             {

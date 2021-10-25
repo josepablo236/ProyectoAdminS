@@ -2,7 +2,6 @@ import React, {Fragment} from 'react';
 import Button from '@material-ui/core/Button';
 import Lock from '@material-ui/icons/LockOpen';
 import {Link} from 'react-router-dom';
-import Login from '../auth/Login';
 
 const NoSesion = () => {
     return ( 

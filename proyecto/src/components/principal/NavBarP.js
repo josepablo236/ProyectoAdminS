@@ -5,16 +5,19 @@ import {ImagenContext} from '../../context/ImagenContext';
 
 const NavBarP = () => {
     //State de la imagen que viene desde el context
-    const { login, guardarLogin, guardarRegresar, guardarFoto, guardarUbicacion, guardarRetro, guardarBase, guardarNombre } = useContext(ImagenContext);
+    const { login, guardarLogin, guardarImagen, guardarRegresar, guardarFoto, guardarUbicacion, guardarRetro, guardarBase, guardarNombre, guardarErrormapa, guardarErrorfoto } = useContext(ImagenContext);
 
     const cerrarSesion = ()=>{
         guardarLogin(false);
         guardarFoto({});
+        guardarImagen({});
         guardarUbicacion({});
         guardarRetro({});
         guardarBase({});
         guardarRegresar(false);
         guardarNombre('');
+        guardarErrorfoto(false);
+        guardarErrormapa(false);
     }
     return ( 
         <Fragment>

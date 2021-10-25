@@ -6,16 +6,19 @@ import Return from '@material-ui/icons/ArrowBack';
 import {ImagenContext} from '../../context/ImagenContext';
 const NavBar = () => {
     //State de la imagen que viene desde el context
-    const { guardarLogin, guardarRegresar, guardarFoto, guardarUbicacion, guardarRetro, guardarBase, guardarNombre } = useContext(ImagenContext);
+    const { guardarLogin, guardarImagen, guardarRegresar, guardarFoto, guardarUbicacion, guardarRetro, guardarBase, guardarNombre, guardarErrormapa, guardarErrorfoto } = useContext(ImagenContext);
 
     const cerrarSesion = ()=>{
         guardarLogin(false);
         guardarFoto({});
+        guardarImagen({});
         guardarUbicacion({});
         guardarRetro({});
         guardarBase({});
         guardarRegresar(false);
         guardarNombre('');
+        guardarErrorfoto(false);
+        guardarErrormapa(false);
     }
 
     const regresar = ()=>{
