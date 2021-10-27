@@ -21,7 +21,7 @@ const Form = () => {
         email: ''
     });
     //En lo que se consigue el link de la pagina
-    const url = "https://github.com/josepablo236/ProyectoAdminS/tree/Principal";
+    const url = "https://misproximasvacaciones.netlify.app/";
     const {email} = formulario;
 
     let objeto = evaluarTemperatura(clima.temp);
